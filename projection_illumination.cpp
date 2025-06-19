@@ -84,8 +84,10 @@ void yjArm(int base_tx, int base_ty, int base_tz, double shoulderAngle, double e
     }
     glPushMatrix();
     
-    glTranslatef(0.25, -0.05, 0); //lower arm의 끝점을 upper arm의 끝점으로 이동
-    glRotatef(armTransform.lower_arm_theta + elbowAngle, 0, 0, 1);
+    glTranslatef(0.05, -0.1, 0); //lower arm의 끝점을 upper arm의 끝점으로 이동
+    glRotatef(armTransform.lower_arm_theta + elbowAngle, 0, 0, 1);   
+    glTranslatef(armTransform.lower_arm_tx, armTransform.lower_arm_ty, 0);
+    glScalef(armTransform.lower_arm_sx, armTransform.lower_arm_sy, 1);
     glTranslatef(0.05, 0.05, 0);
     drawBox();
     glPopMatrix();
@@ -130,6 +132,10 @@ void mouse(int button, int state, int x, int y) {
                 start_theta = armTransform.upper_arm_theta;
             }
             else if (selectedObject == LOWER_ARM_ID) {
+                start_tx = armTransform.lower_arm_tx;
+                start_ty = armTransform.lower_arm_ty;
+                start_sx = armTransform.lower_arm_sx;
+                start_sy = armTransform.lower_arm_sy;
                 start_theta = armTransform.lower_arm_theta;
             }
         }
@@ -156,8 +162,8 @@ void motion(int x, int y) {
     if (selectedObject == UPPER_ARM_ID) {
         switch (inputState) {
         case TRANSLATE_X:
-            armTransform.upper_arm_tx = start_tx + dx * 0.01f;
-            armTransform.upper_arm_ty = start_ty - dy * 0.01f;
+            armTransform.upper_arm_tx = start_tx + dx * 0.005f;
+            armTransform.upper_arm_ty = start_ty - dy * 0.005f;
             break;
         case SCALE_X:
             armTransform.upper_arm_sx = start_sx + dx * 0.01f;
@@ -173,9 +179,19 @@ void motion(int x, int y) {
         return;
     }
 
-    // Lower arm control (rotation)
+    // Lower arm control
     if (selectedObject == LOWER_ARM_ID) {
         switch (inputState) {
+        case TRANSLATE_X:
+            armTransform.lower_arm_tx = start_tx + dx * 0.005f;
+            armTransform.lower_arm_ty = start_ty - dy * 0.005f;
+            break;
+        case SCALE_X:
+            armTransform.lower_arm_sx = start_sx + dx * 0.01f;
+            armTransform.lower_arm_sy = start_sy - dy * 0.01f;
+            if (armTransform.lower_arm_sx < 0.1f) armTransform.lower_arm_sx = 0.1f;
+            if (armTransform.lower_arm_sy < 0.1f) armTransform.lower_arm_sy = 0.1f;
+            break;
         case ROTATE_ANGLE:
             armTransform.lower_arm_theta = start_theta + dx;
             break;
@@ -188,8 +204,8 @@ void motion(int x, int y) {
 
     switch (inputState) {
     case TRANSLATE_X:
-        t->tx = start_tx + dx * 0.5f;
-        t->ty = start_ty - dy * 0.5f;
+        t->tx = start_tx + dx * 0.05f;
+        t->ty = start_ty - dy * 0.05f;
         break;
 
     case SCALE_X:
