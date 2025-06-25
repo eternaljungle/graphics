@@ -99,7 +99,7 @@ void yjRocket()
 {
     float x1, y1, x2, y2, x3, y3, x4, y4;
 
-    //·ÎÄÏ ¸öÅë
+    //ë¡œì¼“ ëª¸í†µ
     glColor3f(0.0f, 0.0f, 1.0f);
     glBegin(GL_QUADS);
     transformPoint(340, 200, x1, y1); glVertex2f(x1, y1);
@@ -108,7 +108,7 @@ void yjRocket()
     transformPoint(340, 300, x4, y4); glVertex2f(x4, y4);
     glEnd();
 
-    //·ÎÄÏ ¾ÕºÎºÐ
+    //ë¡œì¼“ ì•žë¶€ë¶„
     glColor3f(1.0f, 1.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     transformPoint(340, 300, x1, y1); glVertex2f(x1, y1);
@@ -116,7 +116,7 @@ void yjRocket()
     transformPoint(360, 340, x3, y3); glVertex2f(x3, y3);
     glEnd();
 
-    //¿ÞÂÊ ³¯°³
+    //ì™¼ìª½ ë‚ ê°œ
     glColor3f(1.0f, 1.0f, 0.0f);
     glBegin(GL_QUADS);
     transformPoint(340, 200, x1, y1); glVertex2f(x1, y1);
@@ -125,7 +125,7 @@ void yjRocket()
     transformPoint(340, 230, x4, y4); glVertex2f(x4, y4);
     glEnd();
 
-    // ¿À¸¥ÂÊ ³¯°³
+    // ì˜¤ë¥¸ìª½ ë‚ ê°œ
     glBegin(GL_QUADS);
     transformPoint(380, 200, x1, y1); glVertex2f(x1, y1);
     transformPoint(400, 180, x2, y2); glVertex2f(x2, y2);
@@ -136,15 +136,15 @@ void yjRocket()
 
 void keyboard(unsigned char key, int x, int y)
 {
-    //x°ª ÀÔ·Â ÈÄ enter, y°ª ÀÔ·Â ÈÄ enter
+    //xê°’ ìž…ë ¥ í›„ enter, yê°’ ìž…ë ¥ í›„ enter
     if (key == '\r' || key == '\n') {
         float value = std::stof(inputBuffer);
         inputBuffer = "";
 
         switch (inputState) {
-        case TRANSLATE_X: tx = value; inputState = TRANSLATE_Y; std::cout << "y°ª ÀÔ·Â: "; break;
+        case TRANSLATE_X: tx = value; inputState = TRANSLATE_Y; std::cout << "yê°’ ìž…ë ¥: "; break;
         case TRANSLATE_Y: ty = value; myTranslate(tx, ty); inputState = NONE; glutPostRedisplay(); break;
-        case SCALE_X: sx = value;inputState = SCALE_Y; std::cout << "y°ª ÀÔ·Â: "; break;
+        case SCALE_X: sx = value;inputState = SCALE_Y; std::cout << "yê°’ ìž…ë ¥: "; break;
         case SCALE_Y: sy = value; myScale(sx, sy); inputState = NONE; glutPostRedisplay(); break;
         case ROTATE_ANGLE: theta = value; myRotate(theta); inputState = NONE; glutPostRedisplay(); break;
         default: break;
@@ -159,9 +159,9 @@ void keyboard(unsigned char key, int x, int y)
     }
 
     switch (key) {
-    case 'T': case 't': inputState = TRANSLATE_X; std::cout << "x°ª ÀÔ·Â: "; break;
-    case 'S': case 's': inputState = SCALE_X; std::cout << "x°ª ÀÔ·Â"; break;
-    case 'R': case 'r': inputState = ROTATE_ANGLE; std::cout << "È¸Àü °¢µµ ÀÔ·Â: "; break;
+    case 'T': case 't': inputState = TRANSLATE_X; std::cout << "xê°’ ìž…ë ¥: "; break;
+    case 'S': case 's': inputState = SCALE_X; std::cout << "xê°’ ìž…ë ¥"; break;
+    case 'R': case 'r': inputState = ROTATE_ANGLE; std::cout << "íšŒì „ ê°ë„ ìž…ë ¥: "; break;
     }
 }
 
