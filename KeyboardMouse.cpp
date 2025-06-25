@@ -75,7 +75,7 @@ void yjRocket()
 {
     float x1, y1, x2, y2, x3, y3, x4, y4;
 
-    //·ÎÄÏ ¸öÅë
+    //ë¡œì¼“ ëª¸í†µ
     glColor3f(0.0f, 0.0f, 1.0f);
     glBegin(GL_QUADS);
     transformPoint(340, 200, x1, y1); glVertex2f(x1, y1);
@@ -84,7 +84,7 @@ void yjRocket()
     transformPoint(340, 300, x4, y4); glVertex2f(x4, y4);
     glEnd();
 
-    //·ÎÄÏ ¾ÕºÎºÐ
+    //ë¡œì¼“ ì•žë¶€ë¶„
     glColor3f(1.0f, 1.0f, 0.0f);
     glBegin(GL_TRIANGLES);
     transformPoint(340, 300, x1, y1); glVertex2f(x1, y1);
@@ -92,7 +92,7 @@ void yjRocket()
     transformPoint(360, 340, x3, y3); glVertex2f(x3, y3);
     glEnd();
 
-    //¿ÞÂÊ ³¯°³
+    //ì™¼ìª½ ë‚ ê°œ
     glColor3f(1.0f, 1.0f, 0.0f);
     glBegin(GL_QUADS);
     transformPoint(340, 200, x1, y1); glVertex2f(x1, y1);
@@ -101,7 +101,7 @@ void yjRocket()
     transformPoint(340, 230, x4, y4); glVertex2f(x4, y4);
     glEnd();
 
-    // ¿À¸¥ÂÊ ³¯°³
+    // ì˜¤ë¥¸ìª½ ë‚ ê°œ
     glBegin(GL_QUADS);
     transformPoint(380, 200, x1, y1); glVertex2f(x1, y1);
     transformPoint(400, 180, x2, y2); glVertex2f(x2, y2);
@@ -115,7 +115,7 @@ void mouse(int button, int state, int x, int y) {
             mouseDragging = true;
             mouseStartX = x;
             mouseStartY = y;
-            // ÇöÀç º¯È¯°ª ÀúÀå
+            // í˜„ìž¬ ë³€í™˜ê°’ ì €ìž¥
             start_tx = tx;
             start_ty = ty;
             start_sx = sx;
